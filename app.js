@@ -13,7 +13,7 @@ const { sequelize } = require('./models/index')
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.set('view engine', 'pug');
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -30,19 +30,32 @@ app.use(function(req, res, next) {
 });
 
 // error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
-});
-
-sequelize.authenticate(() => {
-  console.log('Connected')
-  sequelize.sync()
+app.use((err, req, res, next) => {
+  const error = new Error();
+  error.status = 404;
+  error.message = "Sorry Page Not Found!"
+  res.render('page_not_found', { error })
 })
+
+// Global Error Handler
+app.use((err, req, res, next) => {
+  err.status = 500;
+  err.message = 'Oops something went wrong!';
+  console.error(err.status)
+  console.error(err.message)
+  res.render('error', { err })
+})
+
+
+sequelize.authenticate()
+  .then(() => {
+    console.log('Connected');
+  }).catch(err => {
+    console.error("Error can't connect")
+  })
+
+sequelize.sync()
+
+
 
 module.exports = app;
