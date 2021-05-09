@@ -10,7 +10,7 @@ router.get('/', async function(req, res, next) {
 
 router.get('/books', async (req, res, next)=>{
   const books = await Book.findAll();
-  res.json(books)
+  res.render('index', { books })
 })
 
 router.get('/books/new', async (req, res, next)=>{
