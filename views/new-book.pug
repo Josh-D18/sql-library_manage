@@ -2,7 +2,7 @@ extends layout
 
 block content 
             h1 New Book
-            form
+            form(method='post')
                 p
                     label(for="title") Title
                     input(name="title" type="text" id="title")
@@ -23,4 +23,4 @@ block content
                     input(type="submit" value="Create New Book")
                 
                 p
-                    a(class="button" href="all_books.html") Cancel
+                    a(class="button" href="/") Cancel

@@ -1,0 +1,12 @@
+extends layout 
+
+block content 
+            h1 Book 
+            h2 #{book.title}
+            p #{book.author}
+            p #{book.genre}
+            p #{book.year}
+            p
+                a(class="button" href=`/books/${book.id}/edit`) Update Book
+            p
+                a(class="button" href="/") Back
