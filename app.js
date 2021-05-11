@@ -52,7 +52,7 @@ sequelize.authenticate()
   .then(() => {
     console.log('Connected');
   }).catch(err => {
-    console.error("Error can't connect")
+    console.error("Error can't connect", err)
   })
 
 sequelize.sync()
