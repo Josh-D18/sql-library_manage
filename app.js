@@ -9,7 +9,7 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
-const { sequelize } = require('./models/index')
+const { sequelize } = require('./models/index');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
