@@ -46,7 +46,7 @@ app.use((err, req, res, next) => {
   res.render('error', { err })
 })
 
-
+// Authenticate and connect to database
 sequelize.authenticate()
   .then(() => {
     console.log('Connected');
