@@ -52,6 +52,7 @@ router.get('/books/:id', asyncHandler(async (req, res, next)=>{
   if (book){
     res.render("book-detail", { book : book });
   } else{
+    next();
     res.sendStatus(404);
   } 
 }))
