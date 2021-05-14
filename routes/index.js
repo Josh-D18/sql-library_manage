@@ -53,12 +53,11 @@ router.get('/books/:id', asyncHandler(async (req, res, next)=>{
     res.render("book-detail", { book : book });
   } else{
     next();
-    res.sendStatus(404);
   } 
 }))
 
 /* Render Edit Book Page */
-router.get('/:id/edit', asyncHandler(async (req, res, next)=>{
+router.get('/books/:id/edit', asyncHandler(async (req, res, next)=>{
   const book = await Book.findByPk(req.params.id);
   if (book){
     res.render("update-book", { book : book });
@@ -68,7 +67,7 @@ router.get('/:id/edit', asyncHandler(async (req, res, next)=>{
 }))
 
 /* Update a Book */
-router.post('/:id/edit', asyncHandler(async (req, res, next)=>{
+router.post('/books/:id/edit', asyncHandler(async (req, res, next)=>{
   const book = await Book.findByPk(req.params.id);
   if(book) {
     await book.update(req.body);
